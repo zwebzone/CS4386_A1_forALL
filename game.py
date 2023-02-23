@@ -345,7 +345,7 @@ if __name__ == "__main__":
     #player1 canbe a human player or a AI player
     if p1_language=="Human":
         p1 = Player("human", "X")
-        print("the first player is huamn")
+        print("the first player is human")
     elif p1_language =="CPP":
         print("the first player is AI (C++)")
         p1 = CDLL('./cpp/aiplayer.so')
@@ -371,7 +371,7 @@ if __name__ == "__main__":
     #player2 is an AI player, which can be implemented by C++, Java or Python
     if p2_language=="Human":
         p2 = Player("human", "O")
-        print("the first player is huamn")
+        print("the first player is human")
     elif p2_language =="CPP":
         print("the second player is AI (C++)")
         p2 = CDLL('./cpp/aiplayer.so')
