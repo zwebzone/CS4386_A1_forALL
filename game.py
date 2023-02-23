@@ -149,7 +149,6 @@ def gameLoop(screen, p1, p2):
     while(not gridFull(grid.grid)):
         punish = 0
         # Check player is player1 or player2
-        if(playerTurn.get_isAI()):
         if(playerTurn==p2):
             #if the player is player2
             #if player2 written in c++
