@@ -150,6 +150,7 @@ def gameLoop(screen, p1, p2):
         punish = 0
         # Check player is player1 or player2
         if(playerTurn.get_isAI()):
+        if(playerTurn==p2):
             #if the player is player2
             #if player2 written in c++
             if p2_language =="CPP":
@@ -231,8 +232,9 @@ def gameLoop(screen, p1, p2):
 
             print("Player2 (Red) Time:", (toc - tic))
             if (toc - tic) > TIME_LIMIT:
-                print("Timed out, game over.Player1 wins.")
+                print("Timed out, game over. Player1 wins.")
                 return "-2"
+        
         # if the player is player1
         else:
             # check the type of player1
