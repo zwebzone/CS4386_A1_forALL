@@ -116,7 +116,7 @@ class AIPlayer(object):
                 x = i[0]
                 y = i[1]
 
-                for k in range(x-1, 0, -1):
+                for k in range(x-1, -1, -1):
                     if (state[k][y] != None):
                         horizontal_cnt += 1
                     else:
@@ -127,12 +127,12 @@ class AIPlayer(object):
                     else:
                         break
 
-                for k in range(y-1, 0, -1):
+                for k in range(y-1, -1, -1):
                     if (state[x][k] != None):
                         vertical_cnt += 1
                     else:
                         break
-                for k in range(6, y + 1):
+                for k in range(y + 1, 6):
                     if (state[x][k] != None):
                         vertical_cnt += 1
                     else:
