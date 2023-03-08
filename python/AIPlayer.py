@@ -60,7 +60,7 @@ class AIPlayer(object):
         ##########################################################
 
         # Array: Get Valid Move
-        def valid_move(games):
+        def valid_move(games, player):
             correct_cells = []
             for i in games:
                 if (i[0] + i[1]) % 2 == 0:
@@ -104,11 +104,11 @@ class AIPlayer(object):
 
             return hasNeigbor
 
-        def countNeigbor(state, validMoves):
+        def countNeigbor(state, valid_move):
 
             pos_h_v = []
 
-            for i in validMoves:
+            for i in valid_move:
 
                 vertical_cnt = 0
                 horizontal_cnt = 0
@@ -164,8 +164,8 @@ class AIPlayer(object):
             return bestMove
 
         games = self.available_cells(state, player)
-        validMoves = valid_move(games)
-        neigborCount = countNeigbor(state, validMoves)
+        valid_move = valid_move(games)
+        neigborCount = countNeigbor(state, valid_move)
 
         #####################################
         print("\nPOS HORIZONTAL VERTICAL: \n")
@@ -175,14 +175,8 @@ class AIPlayer(object):
 
         bestMove = chooseBestMove(neigborCount)
 
-        if bestMove == None:
-            goodMove = get_neigbor(state, validMoves)
-            if (len(goodMove) == 0):
-                bestMove = random.choice(validMoves)
-            else:
-                bestMove = random.choice(goodMove)
-            ##########################################################
-            print("Best Move with random: ", bestMove)
-            ##########################################################
+        ##########################################################
+        print("Best Move with random: ", bestMove)
+        ##########################################################
 
         return bestMove
