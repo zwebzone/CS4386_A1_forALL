@@ -53,7 +53,9 @@ class AIPlayer(object):
 
     def get_move(self, state, player):
 
+        ##########################################################
         print("\nBoard: \n", state)
+        ##########################################################
 
         # Array: Get Valid Move
 
@@ -67,7 +69,9 @@ class AIPlayer(object):
                     if (player == 'O'):
                         correct_cells.append(i)
 
+            ##########################################################
             print("\nCorrect Moves: \n", correct_cells)
+            ##########################################################
             return correct_cells
 
         def get_neigbor(state, valid_move):
@@ -98,19 +102,22 @@ class AIPlayer(object):
 
         games = self.available_cells(state, player)
         validMoves = valid_move(games)
-
         pos_h_v = []
+
         for i in validMoves:
+
             vertical_cnt = 0
             horizontal_cnt = 0
 
             x = i[0]
             y = i[1]
+
             for k in range(0, x):
                 if (state[k, y] != None):
                     horizontal_cnt += 1
                 else:
                     horizontal_cnt = 0
+
             for k in range(x + 1, 6):
                 if (state[k, y] != None):
                     horizontal_cnt += 1
@@ -122,35 +129,42 @@ class AIPlayer(object):
                     vertical_cnt += 1
                 else:
                     vertical_cnt = 0
+
             for k in range(6, y + 1):
                 if (state[x, k] != None):
                     vertical_cnt += 1
                 else:
                     vertical_cnt = 0
+
             pos_h_v.append((i, horizontal_cnt, vertical_cnt))
 
+        #####################################
         print("\nPOS HORIZONTAL VERTICAL: \n")
         for i in pos_h_v:
             print(i)
+        #####################################
 
         bestMove = None
+
         for i in pos_h_v:
             if i[1] == 5 or i[2] == 5:
                 bestMove = i[0]
+                ##########################################################
+                print("Best Move with 5: ", bestMove)
+                ##########################################################
                 break
             elif i[1] == 2 or i[2] == 2:
                 bestMove = i[0]
+                ##########################################################
+                print("Best Move with 2: ", bestMove)
+                ##########################################################
                 break
-            else:
-                bestMove = random.choice(validMoves)
-        '''
-        goodMoves = get_neigbor(state, validMoves)
 
-        print("\nGood Moves: \n", goodMoves)
+        if bestMove == None:
+            goodMove = get_neigbor(state, validMoves)
+            bestMove = random.choice(goodMove)
+            ##########################################################
+            print("Best Move with random: ", bestMove)
+            ##########################################################
 
-        if (len(goodMoves) == 0):
-            bestMove = random.choice(validMoves)
-        else:
-            bestMove = random.choice(goodMoves)
-        '''
         return bestMove
