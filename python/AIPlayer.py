@@ -116,29 +116,27 @@ class AIPlayer(object):
                 x = i[0]
                 y = i[1]
 
-                for k in range(0, x):
-                    if (state[k, y] != None):
+                for k in range(x-1, 0, -1):
+                    if (state[k][y] != None):
                         horizontal_cnt += 1
                     else:
-                        horizontal_cnt = 0
-
+                        break
                 for k in range(x + 1, 6):
-                    if (state[k, y] != None):
+                    if (state[k][y] != None):
                         horizontal_cnt += 1
                     else:
-                        horizontal_cnt = 0
+                        break
 
-                for k in range(0, y):
-                    if (state[x, k] != None):
+                for k in range(y-1, 0, -1):
+                    if (state[x][k] != None):
                         vertical_cnt += 1
                     else:
-                        vertical_cnt = 0
-
+                        break
                 for k in range(6, y + 1):
-                    if (state[x, k] != None):
+                    if (state[x][k] != None):
                         vertical_cnt += 1
                     else:
-                        vertical_cnt = 0
+                        break
 
                 pos_h_v.append((i, horizontal_cnt, vertical_cnt))
 
@@ -159,6 +157,10 @@ class AIPlayer(object):
                     print("Best Move with 2: ", bestMove)
                     ##########################################################
                     break
+            if bestMove == None:
+                for i in neigborCount:
+                    if (i[1] != 1 and i[2] != 1):
+                        bestMove = i[0]
             return bestMove
 
         games = self.available_cells(state, player)
