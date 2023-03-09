@@ -164,8 +164,8 @@ class AIPlayer(object):
             return bestMove
 
         games = self.available_cells(state, player)
-        valid_move = valid_move(games)
-        neigborCount = countNeigbor(state, valid_move)
+        valid_moves = valid_move(games, player)
+        neigborCount = countNeigbor(state, valid_moves)
 
         #####################################
         print("\nPOS HORIZONTAL VERTICAL: \n")
@@ -175,8 +175,14 @@ class AIPlayer(object):
 
         bestMove = chooseBestMove(neigborCount)
 
-        ##########################################################
-        print("Best Move with random: ", bestMove)
-        ##########################################################
+        if bestMove == None:
+            goodMove = get_neigbor(state, valid_moves)
+            if (len(goodMove) == 0):
+                bestMove = random.choice(valid_moves)
+            else:
+                bestMove = random.choice(goodMove)
+            ##########################################################
+            print("Best Move with random: ", bestMove)
+            ##########################################################
 
         return bestMove
